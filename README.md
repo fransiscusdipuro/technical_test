@@ -1,2 +1,2 @@
-# technical_test
+# HDB Technical Test
 Technical test
