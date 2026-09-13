@@ -23,7 +23,7 @@ Using `Jan 2012` as the authoritative baseline set:
 ## 4. Derived Attribute Logic (Remaining Lease)
 - **Lease Assumption**: 99-year total lease length.
 - **Calculation Formula**:
-$$\text{Expiry Year} = \text{lease_commence_date} + 99$$
+$$\text{Expiry Year} = \text{lease commence date} + 99$$
 $$\text{Remaining Months} = (\text{Expiry Year} \times 12) - \text{Transaction Date Total Months}$$
 $$\text{Formatted Lease} = \lfloor\text{Remaining Months} / 12\rfloor \text{ years } + (\text{Remaining Months} \pmod{12}) \text{ months}$$
 
