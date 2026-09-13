@@ -98,4 +98,4 @@ Logs and monitoring by Amazon CloudTrail and CloudWatch.
 ---
 
 ## 2. High-Level System Architecture Diagram
-[Architecture Diagram](part2\aws_arch.drawio.png)
+[Architecture Diagram](part2/aws_arch.drawio.png)
