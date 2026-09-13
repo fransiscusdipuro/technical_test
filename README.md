@@ -82,4 +82,4 @@ The pipeline structures data into **five mandatory output groups** exported dire
 | **2. Cleaned** | `02_cleaned_dataset.csv` | Validated master records passing baseline checks, deduplicated (retaining higher price records), with derived lease attributes added. |
 | **3. Transformed** | `03_transformed_dataset.csv` | Enriched dataset containing the derived `avg_group_resale_price` and unhashed `resale_identifier`. |
 | **4. Quarantined** | `04_quarantined_dataset.csv` | Isolated records failed or excluded during processing, including lower-price duplicate transactions and statistical price anomalies (Grouped IQR outliers). |
-| **5. Hashed** | `05_hashed_dataset.csv` | Final analytical delivery dataset where the `resale_identifier` is securely encrypted using SHA-256. |
+| **5. Hashed** | `05_hashed_dataset.csv` | Final analytical delivery dataset where the `resale_identifier` is securely encrypted. |
