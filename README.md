@@ -2,8 +2,8 @@
 
 # PART1
 
-Folder: /part1
-Jupyter notebook file: /part1/part1.ipynb
+Folder: \part1
+Jupyter notebook file: \part1\part1.ipynb
 
 ## 1. Executive Summary
 This ETL pipeline standardizes, validates, and transforms HDB resale flat transaction data from January 2012 to December 2016. It guarantees data consistency across schema variances across multiple reporting periods and produces an analytical dataset ready for Data Science consumption.
@@ -83,3 +83,19 @@ The pipeline structures data into **five mandatory output groups** exported dire
 | **3. Transformed** | `03_transformed_dataset.csv` | Enriched dataset containing the derived `avg_group_resale_price` and unhashed `resale_identifier`. |
 | **4. Quarantined** | `04_quarantined_dataset.csv` | Isolated records failed or excluded during processing, including lower-price duplicate transactions and statistical price anomalies (Grouped IQR outliers). |
 | **5. Hashed** | `05_hashed_dataset.csv` | Final analytical delivery dataset where the `resale_identifier` is securely encrypted. |
+
+# PART 2: Architecture & System Design
+
+Folder: \part2
+
+## 1. Executive Summary
+Part 2 outlines a cloud-native, enterprise-grade data platform on Amazon Web Services (AWS) designed to automate the ingestion, transformation, storage from public datasets (data.gov.sg).
+
+The architecture emphasizes **serverless scalability**, **strict security and privacy controls**, and **minimal infrastructure cost/overhead** by leveraging AWS Glue Python Shell, S3 storage tiers, Glue Data Catalog, and Amazon Athena routed privately via AWS VPC Endpoints.
+
+Logs and monitoring by Amazon CloudTrail and CloudWatch. 
+
+---
+
+## 2. High-Level System Architecture Diagram
+.\part2\aws_arch_drawio.png

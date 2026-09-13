@@ -1,0 +1,132 @@
+<mxfile host="app.diagrams.net" agent="Gemini">
+  <diagram id="AWS_HDB_Simplified_Architecture" name="HDB AWS Architecture (Clean VPC)">
+    <mxGraphModel dx="852" dy="509" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#232F3E;" value="AWS Data Lake Architecture: Ingestion &amp; Private Exploitation" vertex="1">
+          <mxGeometry height="40" width="1200" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="internet_boundary" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F5F5F5;fontColor=#333333;strokeColor=#CCCCCC;startSize=30;horizontal=1;fontStyle=1;" value="Public Internet" vertex="1">
+          <mxGeometry height="780" width="180" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="datagov_endpoint" parent="internet_boundary" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.globe;fillColor=#527FFF;strokeColor=none;fontStyle=1;" value="data.gov.sg API&lt;br&gt;(Public Source)" vertex="1">
+          <mxGeometry height="80" width="80" x="50" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="J42ZA9CAtvWBGOxLqFHG-4" parent="internet_boundary" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.internet_gateway;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Internet&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Gateway&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="60" x="177" y="453" as="geometry" />
+        </mxCell>
+        <mxCell id="aws_cloud" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#FF9900;strokeWidth=2;startSize=30;horizontal=1;fontStyle=1;fontColor=#FF9900;" value="AWS Cloud (Region: ap-southeast-1)" vertex="1">
+          <mxGeometry height="780" width="1200" x="250" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc1" parent="aws_cloud" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F2F9FF;strokeColor=#0073BB;strokeWidth=2;startSize=30;horizontal=1;fontStyle=1;fontColor=#0073BB;" value="VPC 1: Data Platform VPC" vertex="1">
+          <mxGeometry height="700" width="410" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sub1_ingest" parent="vpc1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0073BB;dashed=1;startSize=25;fontStyle=1;fontColor=#0073BB;" value="Private Ingestion &amp; Processing Subnet" vertex="1">
+          <mxGeometry height="620" width="250" x="130" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="glue_python_ingest" parent="sub1_ingest" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.glue;fillColor=#8C4FFF;strokeColor=none;fontStyle=1;" value="AWS Glue Python Shell&#xa;(ETL / Polars / Hashing)" vertex="1">
+          <mxGeometry height="70" width="70" x="90" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="J42ZA9CAtvWBGOxLqFHG-7" parent="sub1_ingest" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;Amazon EventBridge&lt;/span&gt;&lt;br style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;(Cron Scheduler)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="50" x="100" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc2" parent="aws_cloud" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F2F9FF;strokeColor=#0073BB;strokeWidth=2;startSize=30;horizontal=1;fontStyle=1;fontColor=#0073BB;" value="VPC 2: Data Science Analytics VPC" vertex="1">
+          <mxGeometry height="700" width="310" x="470" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sub3_tableau" parent="vpc2" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0073BB;dashed=1;startSize=25;fontStyle=1;fontColor=#0073BB;" value="Private Exploitation Subnet" vertex="1">
+          <mxGeometry height="620" width="250" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tableau_server" parent="sub3_tableau" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ec2;fillColor=#F58536;strokeColor=none;fontStyle=1;" value="Tableau Server on EC2" vertex="1">
+          <mxGeometry height="70" width="70" x="90" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="aws_managed_services" parent="aws_cloud" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;startSize=30;horizontal=1;fontStyle=1;fontColor=#B25900;" value="AWS Managed Regional Services" vertex="1">
+          <mxGeometry height="700" width="320" x="850" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kms" parent="aws_managed_services" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.kms;fillColor=#7AA116;strokeColor=none;" value="AWS KMS Encryption" vertex="1">
+          <mxGeometry height="40" width="40" x="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3_datalake" parent="aws_managed_services" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.s3;fillColor=#7AA116;strokeColor=none;fontStyle=1;" value="Amazon S3 Data Lake&#xa;(Raw / Cleaned / Parquet)" vertex="1">
+          <mxGeometry height="70" width="70" x="125" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="athena" parent="aws_managed_services" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.athena;fillColor=#8C4FFF;strokeColor=none;fontStyle=1;" value="Amazon Athena&#xa;(Serverless SQL Engine)" vertex="1">
+          <mxGeometry height="70" width="70" x="125" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc_peering" edge="1" parent="aws_cloud" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;fillColor=#7AA116;strokeColor=#3B7302;fontSize=10;fontStyle=1;align=center;" value="AWS VPC Peering / Transit Gateway">
+          <mxGeometry height="100" relative="1" width="100" as="geometry" />
+        </mxCell>
+        <mxCell id="flow1" edge="1" parent="aws_cloud" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0073BB;strokeWidth=2;fontColor=#0073BB;fontStyle=1;" target="glue_python_ingest" value="1. Cron Trigger">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="275" y="340" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow3" edge="1" parent="aws_cloud" source="glue_python_ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7AA116;strokeWidth=2;fontColor=#7AA116;fontStyle=1;" target="s3_datalake" value="3. Write Parquet (via S3 Endpoint)">
+          <mxGeometry relative="1" x="0.0918" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="400" y="485" />
+              <mxPoint x="400" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow4" edge="1" parent="aws_cloud" source="glue_python_ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8C4FFF;strokeWidth=2;fontColor=#8C4FFF;fontStyle=1;" target="J42ZA9CAtvWBGOxLqFHG-9" value="4. Register Schema (via Glue Endpoint)">
+          <mxGeometry relative="1" x="0.0184" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="275" y="430" />
+            </Array>
+            <mxPoint x="930" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow5" edge="1" parent="aws_cloud" source="tableau_server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B7302;strokeWidth=3;fontColor=#3B7302;fontStyle=1;" target="athena" value="5. SQL Query (via Athena Endpoint)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="625" y="605" />
+              <mxPoint x="975" y="605" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow6" edge="1" parent="aws_cloud" source="athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8C4FFF;strokeWidth=2;fontColor=#8C4FFF;fontStyle=1;dashed=1;" value="6. Schema Lookup">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1010" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow7" edge="1" parent="aws_cloud" source="J42ZA9CAtvWBGOxLqFHG-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7AA116;strokeWidth=2;fontColor=#7AA116;fontStyle=1;" target="s3_datalake" value="7. Read Parquet Data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="J42ZA9CAtvWBGOxLqFHG-9" parent="aws_cloud" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.glue_data_catalog;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;AWS Glue Data Catalog&lt;/span&gt;&lt;br style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;(Central Metadata Registry)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="46.15" x="986.9200000000001" y="407" as="geometry" />
+        </mxCell>
+        <mxCell id="J42ZA9CAtvWBGOxLqFHG-12" edge="1" parent="aws_cloud" source="athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7AA116;strokeWidth=2;fontColor=#7AA116;fontStyle=1;" target="J42ZA9CAtvWBGOxLqFHG-9" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1260" y="650" as="sourcePoint" />
+            <mxPoint x="1260" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow2" edge="1" parent="1" source="J42ZA9CAtvWBGOxLqFHG-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F58536;strokeWidth=2;fontColor=#F58536;fontStyle=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="datagov_endpoint" value="2. Fetch API Data">
+          <mxGeometry relative="1" x="0.3231" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="footer_note" parent="1" style="text;html=1;strokeColor=#B3B3B3;fillColor=#FFF2CC;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=0;fontColor=#333333;" value="Architectural Flow Key:&#xa;• Write Path: EventBridge triggers Glue Python Shell to fetch API data from data.gov.sg. Processed Parquet files are written directly to S3 via S3 Gateway Endpoint, and table definitions are updated via Glue Interface Endpoint.&#xa;• Read Path: Tableau Server queries Athena via Athena Interface Endpoint across VPC Peering. Athena checks Glue Data Catalog schema definitions and reads Parquet files from Amazon S3." vertex="1">
+          <mxGeometry height="70" width="1200" x="250" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="J42ZA9CAtvWBGOxLqFHG-3" edge="1" parent="1" source="glue_python_ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F58536;strokeWidth=2;fontColor=#F58536;fontStyle=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="J42ZA9CAtvWBGOxLqFHG-1" value="">
+          <mxGeometry relative="1" x="0.3231" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="390" y="565" />
+              <mxPoint x="390" y="565" />
+            </Array>
+            <mxPoint x="490" y="565" as="sourcePoint" />
+            <mxPoint x="170" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="J42ZA9CAtvWBGOxLqFHG-1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.nat_gateway;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;NAT Gateway&lt;/span&gt;&lt;br style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;(Egress Only)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="60" x="310" y="535" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
