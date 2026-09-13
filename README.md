@@ -3,7 +3,7 @@
 # PART1
 
 [Folder](part1)
-Jupyter notebook file: part1/part1.ipynb
+[Jupyter notebook file](part1/part1.ipynb)
 
 ## 1. Executive Summary
 This ETL pipeline standardizes, validates, and transforms HDB resale flat transaction data from January 2012 to December 2016. It guarantees data consistency across schema variances across multiple reporting periods and produces an analytical dataset ready for Data Science consumption.
