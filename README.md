@@ -2,8 +2,8 @@
 
 # PART1
 
-[Folder].\part1
-[Jupyter notebook file].\part1\part1.ipynb
+[Folder](.\part1)
+[Jupyter notebook file](.\part1\part1.ipynb)
 
 ## 1. Executive Summary
 This ETL pipeline standardizes, validates, and transforms HDB resale flat transaction data from January 2012 to December 2016. It guarantees data consistency across schema variances across multiple reporting periods and produces an analytical dataset ready for Data Science consumption.
@@ -86,7 +86,7 @@ The pipeline structures data into **five mandatory output groups** exported dire
 
 # PART 2: Architecture & System Design
 
-[Folder].\part2
+[Folder](.\part2)
 
 ## 1. Executive Summary
 Part 2 outlines a cloud-native, enterprise-grade data platform on Amazon Web Services (AWS) designed to automate the ingestion, transformation, storage from public datasets (data.gov.sg).
@@ -98,4 +98,4 @@ Logs and monitoring by Amazon CloudTrail and CloudWatch.
 ---
 
 ## 2. High-Level System Architecture Diagram
-[Architecture Diagram].\part2\aws_arch_drawio.png
+[Architecture Diagram](.\part2\aws_arch_drawio.png)
