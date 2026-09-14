@@ -99,3 +99,42 @@ Logs and monitoring by Amazon CloudTrail and CloudWatch.
 
 ## 2. High-Level System Architecture Diagram
 [Architecture Diagram](part2/aws_arch.drawio.png)
+
+### End-to-End Execution Sequence
+
+#### **Phase 1: Scheduled Ingestion & Processing (Data Platform VPC)**
+
+1. **Automated Trigger**  
+   An **Amazon EventBridge** cron schedule to invoke the **AWS Glue Python Shell** job inside the private subnet of the Data Platform VPC (`VPC 1`).
+
+2. **Data Fetch & In-Memory ETL**  
+   The Glue Python Shell job initiates an outbound HTTPS connection through the **NAT Gateway** and **Internet Gateway (IGW)** to get dataset from the `data.gov.sg` public API. Upon retrieval, the script performs:
+   * **Data transformation:** Schema standardization, filtering, and sanitization using optimized libraries.
+   * **Privacy controls:** Generates hashes for sensitive identifier fields.
+
+3. **Optimized Parquet Target Storage**  
+   Processed datasets are written directly to the **Amazon S3 Data Lake** in compressed **Apache Parquet** format. Traffic traverses the private AWS network backbone using an **S3 Gateway Endpoint**, bypassing the public internet.
+
+4. **Catalog Synchronization**  
+   Upon writing to S3, the job executes `boto3` API calls to update partition metadata and register table schemas in the **AWS Glue Data Catalog** via an **AWS Glue Interface VPC Endpoint (AWS PrivateLink)**.
+
+---
+
+#### **Phase 2: Private Analytics & Exploitation (Analytics VPC)**
+
+5. **SQL Query Execution**  
+   BI users and data scientists access the data through **Tableau Server on EC2**, running in the isolated Private Subnet of the Analytics VPC (`VPC 2`). Tableau issues SQL queries directly to **Amazon Athena** via an **Athena Interface VPC Endpoint** provisioned within `VPC 2`.
+
+6. **Metadata & Schema Verification**  
+   Before query execution, **Amazon Athena** connects to the **AWS Glue Data Catalog** to resolve table definitions, column data types, and S3 partition locations.
+
+7. **Direct Parquet Querying**  
+   Athena reads the compressed Parquet files from the **Amazon S3 Data Lake** over the AWS network backbone. Query results are returned to Tableau Server with zero data replication or cross-VPC peering required.
+
+---
+
+### Key Architectural Benefits
+
+* **Strict Network Isolation:** Ingestion components (`VPC 1`) and analytics consumers (`VPC 2`) operate in isolated VPCs with zero direct network connectivity (no VPC Peering or Transit Gateway required).
+* **Private Network Routing:** All communication with AWS Managed Regional Services (S3, Glue Data Catalog, Athena) travels over private **VPC Endpoints**.
+* **Serverless Cost Efficiency:** The compute footprint spins up on-demand via Glue Python Shell and Athena, eliminating idle infrastructure costs while handling payloads efficiently.
